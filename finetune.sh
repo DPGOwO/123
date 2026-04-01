@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # export CUDA_VISIBLE_DEVICES=4,5,6,7
 NPROC_PER_NODE=8
 
@@ -12,11 +10,11 @@ NNODES=${WORLD_SIZE:-1}
 deepspeed=./scripts/zero3.json
 
 # Model configuration
-llm=/cache/wx1427092/Qwen3-VL-8B-Instruct  # Using HuggingFace model ID
+llm=/cache/wx1427092/Qwen2.5-VL-7B-Instruct  # Using HuggingFace model ID
 
 # Training hyperparameters
 lr=5e-6
-batch_size=8
+batch_size=4
 grad_accum_steps=1
 
 # Training entry point
@@ -27,7 +25,7 @@ datasets=mydata
 
 # Output configuration
 run_name="qwen3vl"
-output_dir=/cache/wx1427092/Qwen3-plan  #TODO
+output_dir=/cache/wx1427092/prompt_val23  #TODO
 # output_dir=/cache/wx1427092/ROUTER
 logging_dir="${output_dir}/log"
 
