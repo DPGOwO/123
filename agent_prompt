@@ -1,0 +1,7 @@
+Use the multi-view images to infer a future trajectory that is geometrically consistent with the visible road layout, lane structure, and drivable space. The predicted waypoints should remain spatially coherent with the scene geometry.
+
+Adopt a conservative planning policy that prioritizes stability and low-risk motion. Prefer controlled trajectory evolution over assertive maneuvering when multiple feasible futures exist.
+
+Use the recent trajectory, velocity, acceleration, and steering history as strong short-term motion priors. Predict a future trajectory that continues the current dynamic tendency in a physically feasible manner.
+
+Allocate more attention to lateral and rear surroundings, especially signals from adjacent lanes and vehicles approaching from the side or rear, as these cues may be important for short-horizon trajectory prediction.
