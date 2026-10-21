@@ -1,12 +1,13 @@
 
 function OnEvent(event, arg)
-    if event == "MOUSE_BUTTON_PRESSED"
-        and (arg == 4 or arg == 5) then
+    if event == "MOUSE_BUTTON_PRESSED" and arg == 4 then
 
-        OutputLogMessage(
-            "Side button=%d, time=%d\n",
-            arg,
-            GetRunningTime()
-        )
+        OutputLogMessage("Click START\n")
+
+        PressMouseButton(1)
+        Sleep(100)
+        ReleaseMouseButton(1)
+
+        OutputLogMessage("Click END\n")
     end
 end
