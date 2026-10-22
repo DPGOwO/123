@@ -1,37 +1,38 @@
--- 左键按下时间（ms）
-local PRESS_MIN  = 100
-local PRESS_MAX  = 180
-local PRESS_MEAN = 140
-local PRESS_STD  = 20
+while running do
+    if IsMouseButtonPressed(TOGGLE_BUTTON) then
+        break
+    end
 
--- 左键松开时间（ms）
-local RELEASE_MIN  = 10
-local RELEASE_MAX  = 25
-local RELEASE_MEAN = 17.5
-local RELEASE_STD  = 4
+    -- 随机生成按下时长
+    local pressTime = boundedGaussian(
+        PRESS_MEAN,
+        PRESS_STD,
+        PRESS_MIN,
+        PRESS_MAX
+    )
 
+    -- 随机生成松开时长
+    local releaseTime = boundedGaussian(
+        RELEASE_MEAN,
+        RELEASE_STD,
+        RELEASE_MIN,
+        RELEASE_MAX
+    )
 
+    -- 按下左键
+    PressMouseButton(1)
 
-local pressTime = boundedGaussian(
-    PRESS_MEAN, PRESS_STD,
-    PRESS_MIN, PRESS_MAX
-)
+    local ok = waitOrStop(pressTime)
 
-local releaseTime = boundedGaussian(
-    RELEASE_MEAN, RELEASE_STD,
-    RELEASE_MIN, RELEASE_MAX
-)
+    -- 松开左键
+    ReleaseMouseButton(1)
 
-PressMouseButton(1)
+    if not ok then
+        break
+    end
 
-local ok = waitOrStop(pressTime)
-
-ReleaseMouseButton(1)
-
-if not ok then
-    break
-end
-
-if not waitOrStop(releaseTime) then
-    break
+    -- 等待下一次点击
+    if not waitOrStop(releaseTime) then
+        break
+    end
 end
